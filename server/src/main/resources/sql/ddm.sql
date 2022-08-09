@@ -13,16 +13,17 @@ create table `t_user` (
                           unique key uk_account(`account`)
 ) engine=innodb default charset=utf8mb4 collate=utf8mb4_unicode_ci comment='user table';
 
-create table `t_resource` (
+create table `t_picture` (
     `id` bigint unsigned auto_increment comment 'primary key',
     `user_id` varchar(32) not null comment 'user id',
-    `resource_setting_id` varchar(32) not null comment 'resource setting id',
+    `compress_setting_id` varchar(32) not null comment 'compress setting id',
+    `filename` varchar(32) not null comment 'file name',
     `type` varchar(32) not null  comment 'type',
     `pic_data` mediumblob not null comment 'data',
     `create_time` datetime default current_timestamp comment 'create time',
     `update_time` datetime default current_timestamp on update current_timestamp comment 'update time',
     primary key pk_id (`id`),
     unique key uk_user_id(`user_id`),
-    unique key uk_resource_setting_id(`resource_setting_id`)
-) engine=innodb default charset=utf8mb4 collate=utf8mb4_unicode_ci comment='resource table';
+    unique key uk_compress_setting_id(`compress_setting_id`)
+) engine=innodb default charset=utf8mb4 collate=utf8mb4_unicode_ci comment='picture table';
 

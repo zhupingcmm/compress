@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mf.mapper.PictureMapper">
+    <resultMap id="ProjectMap" type="com.mf.model.PictureDo">
+        <result column="id" jdbcType="BIGINT" property="id"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="compress_setting_id" jdbcType="BIGINT" property="id"/>
+        <result column="filename" jdbcType="VARCHAR" property="filename"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="pic_data" jdbcType="BLOB" property="data"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+<!--    <select id="getAllProjects" resultMap="ProjectMap">-->
+<!--        select * from `jira`.t_project-->
+<!--    </select>-->
+    <select id="getPictureById" resultMap="ProjectMap">
+        select * from `compress`.t_picture
+        where id = #{id}
+    </select>
+<!--    <select id="getProjectById" resultMap="ProjectMap">-->
+<!--        select * from `jira`.t_project-->
+<!--        where id = #{id}-->
+<!--    </select>-->
+<!--    <update id="updateProjectPin" parameterType="com.mf.jira.server.model.Project">-->
+<!--        update `jira`.t_project-->
+<!--        set pin = #{pin}-->
+<!--        where id =#{id}-->
+<!--    </update>-->
+<!--    <delete id="deleteProjectById">-->
+<!--        delete from `jira`.t_project-->
+<!--        where id = #{id}-->
+<!--    </delete>-->
+    <insert id="insertPicture" parameterType="com.mf.model.PictureDo">
+        insert into `compress`.t_picture
+            (
+                user_id,
+                compress_setting_id,
+                filename,
+                type,
+                pic_data
+            )
+        values
+            (
+                #{userId},
+                #{compressSettingId},
+                #{filename},
+                #{type},
+                #{data}
+            )
+    </insert>
+</mapper>

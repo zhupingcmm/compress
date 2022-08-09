@@ -6,14 +6,13 @@ import java.io.*;
 
 public class CompressUtil {
 
-    public static FileOutputStream compress(String filename, ByteArrayInputStream fileInputStream) {
-        String fileName = CompressUtil.class.getClassLoader().getResource(filename).getPath();
-        try (FileOutputStream fileOutputStream = new FileOutputStream(new File(fileName));){
+    public static byte[] compress(ByteArrayInputStream fileInputStream) {
+        try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();){
             Thumbnails.of(fileInputStream)
                     .size(120, 120)
                     .rotate(90)
-                    .toOutputStream(fileOutputStream);
-            return fileOutputStream;
+                    .toOutputStream(byteArrayOutputStream);
+            return byteArrayOutputStream.toByteArray();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

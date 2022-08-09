@@ -5,4 +5,6 @@ import com.mf.dto.PictureDto;
 public interface PictureService {
 
     void upload(PictureDto pictureDto);
+
+    PictureDto download(long id);
 }
