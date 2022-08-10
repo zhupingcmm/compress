@@ -1,6 +1,8 @@
 package com.mf.controller;
 
 import com.common.base.BaseResponse;
+import com.common.base.ResponseEnum;
+import com.common.exception.CompressException;
 import com.mf.dto.CompressDto;
 import com.mf.dto.PictureDto;
 import com.mf.service.PictureService;
@@ -37,26 +39,25 @@ public class PictureController {
             pictureService.upload(pictureDto);
             return BaseResponse.success();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new CompressException(ResponseEnum.FAILED_UPLOAD);
         }
     }
 
     @PostMapping("/compress")
     public BaseResponse compress(@RequestBody CompressDto compressDto){
         pictureService.compress(compressDto);
-
+        return BaseResponse.success();
     }
 
     @GetMapping("/{id}")
     public BaseResponse<PictureDto> downloads(HttpServletResponse response, @PathVariable long id) {
-        try {
+        try (ServletOutputStream writer = response.getOutputStream()){
             PictureDto pictureDto = pictureService.download(id);
-            ServletOutputStream writer = response.getOutputStream();
             response.setHeader("content-disposition", "attachment; fileName=" + pictureDto.getFilename());
             writer.write(pictureDto.getData());
             return BaseResponse.success(pictureDto);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new CompressException(ResponseEnum.FAILED_DOWNLOAD);
         }
     }
 

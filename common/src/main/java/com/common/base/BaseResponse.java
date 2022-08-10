@@ -16,6 +16,11 @@ public class BaseResponse<T> extends BaseBean{
         this.message = responseEnum.getMessage();
     }
 
+    public BaseResponse(int code, String message) {
+        this.code = code;
+        this.message = message;
+    }
+
     public static <T> BaseResponse<T> success (T data) {
         BaseResponse<T> response = new BaseResponse<>(ResponseEnum.SUCCESS);
         response.setData(data);

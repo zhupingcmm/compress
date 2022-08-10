@@ -26,7 +26,6 @@ public class PictureServiceImpl implements PictureService {
         PictureDo pictureDo = ObjectTransformer.transform(pictureDto, PictureDo.class);
         pictureMapper.insertPicture(pictureDo);
     }
-
     @Override
     public PictureDto download(long id) {
         PictureDo pictureDo = pictureMapper.getPictureById(id);
@@ -43,7 +42,6 @@ public class PictureServiceImpl implements PictureService {
                     p.setData(data);
                     return p;
                 }).collect(Collectors.toList());
-
         pictureMapper.updatePictures(pictureDos);
     }
 
