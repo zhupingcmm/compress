@@ -31,11 +31,11 @@ html body #root {
       margin-left: 0.8rem;
     }
   }
-  & .menu{
+  & .menu {
     border-bottom: none;
     line-height: $header-line-height;
   }
-  & .operation{
+  & .operation {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -44,14 +44,14 @@ html body #root {
 
 .upload {
   text-align: center;
-  & .title{
+  & .title {
     padding: 3rem 0;
     font-size: $font-size;
   }
-  & .description{
+  & .description {
     font-size: $font-size;
   }
-  & .dragger{
+  & .dragger {
     width: 82rem;
     height: 20rem;
     margin: 0 auto;

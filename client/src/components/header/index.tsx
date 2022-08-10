@@ -2,7 +2,7 @@ import { Button, Col, Dropdown, Menu, Row, Space } from "antd";
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
-import { Switch } from 'antd';
+import { Switch } from "antd";
 import { GithubOutlined, DownOutlined } from "@ant-design/icons";
 
 type ImageType = "gif" | "png" | "jpg" | "webp";
@@ -46,7 +46,11 @@ export const Header = () => {
           </div>
         </Col>
         <Col span={14}>
-          <Menu mode="horizontal" defaultSelectedKeys={["image"]} className="menu">
+          <Menu
+            mode="horizontal"
+            defaultSelectedKeys={["image"]}
+            className="menu"
+          >
             <Menu.SubMenu key={"image"} title={"Compress Image"}>
               {imageMenuDataList.map(({ type, link }) => (
                 <Menu.Item key={type}>
@@ -56,7 +60,7 @@ export const Header = () => {
             </Menu.SubMenu>
           </Menu>
         </Col>
-        <Col span={6} className='operation'>
+        <Col span={6} className="operation">
           <Link to="https://www.github.com/qufei1993">
             <GithubOutlined /> Github
           </Link>
@@ -73,7 +77,7 @@ export const Header = () => {
               <DownOutlined />
             </Button>
           </Dropdown>
-          <Switch/>
+          <Switch />
         </Col>
       </Row>
     </header>

@@ -5,10 +5,9 @@ import { useLocation, useParams } from "react-router";
 const { Dragger } = UploadAnt;
 
 export const Upload = () => {
-
   const { type } = useParams();
   const compressType = useMemo(() => {
-    if (type === undefined) return 'PNG';
+    if (type === undefined) return "PNG";
     return type.toUpperCase();
   }, [type]);
   // useLocation();
@@ -16,11 +15,13 @@ export const Upload = () => {
     console.log(file, fileList);
   };
 
-
   return (
     <div className="upload">
       <h2 className="title">Compress {compressType}</h2>
-      <Typography.Text className="description">A free and open source file compression tool Compressor makes your files smaller!</Typography.Text>
+      <Typography.Text className="description">
+        A free and open source file compression tool Compressor makes your files
+        smaller!
+      </Typography.Text>
       <Dragger
         className="dragger"
         multiple={true}
