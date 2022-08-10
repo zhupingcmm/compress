@@ -1,12 +1,60 @@
 @import "~antd/dist/antd.css";
+$font-size: 2rem;
+$header-line-height: 6.4rem;
 html {
-    /** rem em */
-    // em 相对于父元素的font-size
-    // rem 相对于根元素 font-size
-    // 16 * 62.5% =10px
-    font-size: 62.5%;
+  /** rem em */
+  // em 相对于父元素的font-size
+  // rem 相对于根元素 font-size
+  // 16 * 62.5% =10px
+  font-size: 62.5%;
+}
+
+html body #root {
+  height: 100vh;
+}
+
+.header {
+  height: 6.4rem;
+  line-height: $header-line-height;
+  padding: 0 5.8rem;
+  border-bottom: 1px solid #f0f0f0;
+  & .logo {
+    width: 4rem;
+    min-height: 0.8rem;
+    vertical-align: middle;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+
+    & h2 {
+      margin-bottom: 0;
+      margin-left: 0.8rem;
+    }
   }
-  
-  html body #root {
-    height: 100vh;
+  & .menu{
+    border-bottom: none;
+    line-height: $header-line-height;
   }
+  & .operation{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}
+
+.upload {
+  text-align: center;
+  & .title{
+    padding: 3rem 0;
+    font-size: $font-size;
+  }
+  & .description{
+    font-size: $font-size;
+  }
+  & .dragger{
+    width: 82rem;
+    height: 20rem;
+    margin: 0 auto;
+    margin-top: 5rem;
+  }
+}
