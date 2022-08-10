@@ -11,7 +11,16 @@
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
     </resultMap>
-<!--    <select id="getAllProjects" resultMap="ProjectMap">-->
+    <update id="updatePictures" parameterType="list">
+       <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+           update `compress`.t_picture
+           <set>
+               data = ${item.data}
+           </set>
+           where id = ${item.id}
+       </foreach>
+    </update>
+    <!--    <select id="getAllProjects" resultMap="ProjectMap">-->
 <!--        select * from `jira`.t_project-->
 <!--    </select>-->
     <select id="getPictureById" resultMap="ProjectMap">

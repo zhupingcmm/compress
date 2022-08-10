@@ -1,6 +1,7 @@
 package com.mf.controller;
 
 import com.common.base.BaseResponse;
+import com.mf.dto.CompressDto;
 import com.mf.dto.PictureDto;
 import com.mf.service.PictureService;
 import lombok.RequiredArgsConstructor;
@@ -40,9 +41,14 @@ public class PictureController {
         }
     }
 
+    @PostMapping("/compress")
+    public BaseResponse compress(@RequestBody CompressDto compressDto){
+        pictureService.compress(compressDto);
+
+    }
+
     @GetMapping("/{id}")
     public BaseResponse<PictureDto> downloads(HttpServletResponse response, @PathVariable long id) {
-
         try {
             PictureDto pictureDto = pictureService.download(id);
             ServletOutputStream writer = response.getOutputStream();
