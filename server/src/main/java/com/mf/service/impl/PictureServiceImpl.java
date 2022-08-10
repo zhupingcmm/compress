@@ -33,7 +33,7 @@ public class PictureServiceImpl implements PictureService {
     }
 
     @Override
-    public void compress(CompressDto compressDto) {
+    public List<PictureDto> compress(CompressDto compressDto) {
         List<Long> ids= compressDto.getPictureIds();
         List<PictureDo> pictureDos = ids.stream()
                 .map(id -> pictureMapper.getPictureById(id))
@@ -42,7 +42,9 @@ public class PictureServiceImpl implements PictureService {
                     p.setData(data);
                     return p;
                 }).collect(Collectors.toList());
+
         pictureMapper.updatePictures(pictureDos);
+        return ObjectTransformer.transform(pictureDos,PictureDto.class);
     }
 
 

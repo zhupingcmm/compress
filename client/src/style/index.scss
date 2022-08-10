@@ -72,9 +72,10 @@ html body #root {
         & .list__item-row-size {
           text-align: right;
         }
+        & .list__item-row-operation {
+          text-align: right;
+        }
       }
-      // display: flex;
-      // flex-direction: row;
     }
 
     .file__list__footer{

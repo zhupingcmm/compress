@@ -17,6 +17,7 @@ export const UploadFile = () => {
   const beforeUpload = async (file: File, fileList: File[]) => {
     console.log(file, fileList);
     dispatch(addFile(file));
+    // return false;
   };
 
   console.log("pictures:", state);
@@ -35,6 +36,10 @@ export const UploadFile = () => {
         // disabled={true}
         action={`${apiUrl}/picture/1`}
         showUploadList={false}
+        onChange={(info) =>{
+          console.log('info', info)
+        }}
+        
       >
         <p className="ant-upload-drag-icon">
           <InboxOutlined />

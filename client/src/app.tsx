@@ -3,13 +3,14 @@ import { Button, message } from "antd";
 import { useHttp } from "./utils/http";
 import { Header } from "@src/components/header";
 import { RoutesComponent } from "./routes";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 export const App = () => {
+  const queryClient = new QueryClient();
   return (
-    <div>
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
       <RoutesComponent />
-      {/* <Header/>
-            <Upload/>
-            <Button href="http://localhost:8091/picture/1" type="link" >download</Button> */}
-    </div>
+    </QueryClientProvider>
   );
 };

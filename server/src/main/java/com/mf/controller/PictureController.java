@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -44,9 +45,8 @@ public class PictureController {
     }
 
     @PostMapping("/compress")
-    public BaseResponse compress(@RequestBody CompressDto compressDto){
-        pictureService.compress(compressDto);
-        return BaseResponse.success();
+    public BaseResponse<List<PictureDto>> compress(@RequestBody CompressDto compressDto){
+        return BaseResponse.success(pictureService.compress(compressDto));
     }
 
     @GetMapping("/{id}")
