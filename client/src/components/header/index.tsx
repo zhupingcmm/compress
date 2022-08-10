@@ -29,12 +29,6 @@ const imageMenuDataList: ImageMenuDataItem[] = [
     link: "/compress/webp",
   },
 ];
-export enum FileExtraIconNameMapping {
-  jpg = "#icon-JPG",
-  png = "#icon-PNG",
-  gif = "#icon-GIF",
-  webp = "#icon-webp1",
-}
 export const Header = () => {
   return (
     <header className="header">

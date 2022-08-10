@@ -1,6 +1,5 @@
 import React, { FC } from "react";
-import { Header } from "@src/components/header";
-import { Upload } from "@src/components/upload/Uploads";
+import { Upload } from "@src/components/upload";
 
 export const Home = () => {
   return (

@@ -43,18 +43,44 @@ html body #root {
 }
 
 .upload {
-  text-align: center;
-  & .title {
-    padding: 3rem 0;
-    font-size: $font-size;
+  .upload__file {
+    text-align: center;
+    & .title {
+      padding: 3rem 0;
+      font-size: $font-size;
+    }
+    & .description {
+      font-size: $font-size;
+    }
+    & .dragger {
+      width: 82rem;
+      height: 20rem;
+      margin: 0 auto;
+      margin-top: 5rem;
+    }
   }
-  & .description {
-    font-size: $font-size;
-  }
-  & .dragger {
+
+  & .file__list {
     width: 82rem;
-    height: 20rem;
+    // height: 20rem;
     margin: 0 auto;
     margin-top: 5rem;
+
+    & .list__item {
+      & .list__item-row {
+        width: 100%;
+        & .list__item-row-size {
+          text-align: right;
+        }
+      }
+      // display: flex;
+      // flex-direction: row;
+    }
+
+    .file__list__footer{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
   }
 }
