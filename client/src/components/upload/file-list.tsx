@@ -16,13 +16,16 @@ export const FileList: FC = () => {
   const { pictures } = useSelector(pictureState);
   const client = useHttp();
   const handleCompress = useCallback(() => {
-    const uids = pictures.map(p => p?.uid);
+    const uids = pictures.map((p) => p?.uid);
     const compressProfile = {
-        height: 100,
-        width: 100,
-        angle: 45
-    }
-    client("picture/compress", {data: {uids, compressProfile}, method: "POST"});
+      height: 100,
+      width: 100,
+      angle: 45,
+    };
+    client("picture/compress", {
+      data: { uids, compressProfile },
+      method: "POST",
+    });
   }, [pictures]);
   return (
     <div className="file__list">
