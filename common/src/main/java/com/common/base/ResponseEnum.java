@@ -3,24 +3,31 @@ package com.common.base;
 
 import lombok.Getter;
 
+import javax.net.ssl.HttpsURLConnection;
+
 
 public enum ResponseEnum {
-    SUCCESS(0, "请求成功"),
-    ERROR(1000, "系统错误"),
-    TOO_MANY_ROWS_AFFECTED(1001,"更新到其他数据"),
-    NO_ROWS_AFFECTED(1002, "数据未更新成功"),
-    ENTITY_NOT_FOUND(1003, "数据不存在"),
-    TRANSFORM_EXCEPTION(1004, "对象转换异常"),
-    SYSTEM_BUSY(1005, "系统繁忙"),
-    FAILED_UPLOAD(1006, "上传失败"),
-    FAILED_DOWNLOAD(1007, "下载失败");
+    SUCCESS(200,0, "请求成功"),
+    ERROR(500,1000, "系统错误"),
+    TOO_MANY_ROWS_AFFECTED(500,1001,"更新到其他数据"),
+    NO_ROWS_AFFECTED(500,1002, "数据未更新成功"),
+    ENTITY_NOT_FOUND(500,1003, "数据不存在"),
+    TRANSFORM_EXCEPTION(500,1004, "对象转换异常"),
+    SYSTEM_BUSY(500,1005, "系统繁忙"),
+    FAILED_UPLOAD(500,1006, "上传失败"),
+    FAILED_DOWNLOAD(500,1007, "下载失败"),
+    NOT_TOTAL_ROWS_AFFECTED(500,1008,"数据查询或者更新不全");
 
     @Getter
     private int code;
     @Getter
     private String message;
 
-    ResponseEnum(int code, String message) {
+    @Getter
+    private int httpCode;
+
+    ResponseEnum(int httpCode, int code, String message) {
+        this.httpCode = httpCode;
         this.code = code;
         this.message = message;
     }

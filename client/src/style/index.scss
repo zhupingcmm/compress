@@ -75,10 +75,20 @@ html body #root {
         & .list__item-row-operation {
           text-align: right;
         }
+
+        & .list__item-progress {
+          .file-progress {
+            display: flex;
+            flex-direction: row;
+          }
+        }
+        & .list__item-progress-status {
+          margin-left: 1.6rem;
+        }
       }
     }
 
-    .file__list__footer{
+    .file__list__footer {
       display: flex;
       flex-direction: row;
       justify-content: space-between;

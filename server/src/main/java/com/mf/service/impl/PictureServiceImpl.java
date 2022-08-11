@@ -1,5 +1,8 @@
 package com.mf.service.impl;
 
+import com.common.base.Asset;
+import com.common.base.ResponseEnum;
+import com.common.exception.CompressException;
 import com.mf.dto.CompressDto;
 import com.mf.dto.PictureDto;
 import com.mf.mapper.PictureMapper;
@@ -23,8 +26,16 @@ public class PictureServiceImpl implements PictureService {
     private final PictureMapper pictureMapper;
     @Override
     public void upload(PictureDto pictureDto) {
-        PictureDo pictureDo = ObjectTransformer.transform(pictureDto, PictureDo.class);
-        pictureMapper.insertPicture(pictureDo);
+        try {
+            PictureDo pictureDo = ObjectTransformer.transform(pictureDto, PictureDo.class);
+            int result = pictureMapper.insertPicture(pictureDo);
+            Asset.singleRowAffected(result);
+        } catch (Exception e) {
+            log.error("Failed to inset picture: {} with error {}", pictureDto.getFilename(), String.valueOf(e));
+            throw new CompressException(ResponseEnum.FAILED_UPLOAD);
+        }
+
+
     }
     @Override
     public PictureDto download(long id) {
@@ -45,6 +56,12 @@ public class PictureServiceImpl implements PictureService {
 
         pictureMapper.updatePictures(pictureDos);
         return ObjectTransformer.transform(pictureDos,PictureDto.class);
+    }
+
+    @Override
+    public void deleteByUid(String uid) {
+        int result = pictureMapper.deleteByUid(uid);
+        Asset.singleRowAffected(result);
     }
 
 

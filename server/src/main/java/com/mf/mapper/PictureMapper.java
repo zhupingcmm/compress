@@ -14,5 +14,7 @@ public interface PictureMapper {
 
     void updatePictures (List<PictureDo> pictureDos);
 
+    int deleteByUid(String uid);
+
 //    List<PictureDo> getPictureByIds(List<Long> ids);
 }

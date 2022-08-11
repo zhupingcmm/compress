@@ -24,14 +24,16 @@ public class PictureController {
 
     private final PictureService pictureService;
 
-    @PostMapping("/{id}")
-    public BaseResponse uploadResource(@PathVariable(name = "id") long userId, @RequestParam MultipartFile file) {
+    @PostMapping("/{userid}/{uid}")
+    public BaseResponse uploadResource(@PathVariable(name = "userid") long userId, @PathVariable(name = "uid") String uid, @RequestParam MultipartFile file) {
         try {
             byte [] data = file.getBytes();
             String filename = file.getOriginalFilename();
             String type = filename.substring(filename.lastIndexOf("."));
+
             PictureDto pictureDto = PictureDto.builder()
                     .userId(userId)
+                    .uid(uid)
                     .compressSettingId(1l)
                     .filename(filename)
                     .type(type)
@@ -59,6 +61,14 @@ public class PictureController {
         } catch (IOException e) {
             throw new CompressException(ResponseEnum.FAILED_DOWNLOAD);
         }
+    }
+
+    @DeleteMapping("/{uid}")
+    public BaseResponse remove(@PathVariable String uid){
+
+        pictureService.deleteByUid(uid);
+        return BaseResponse.success();
+
     }
 
 

@@ -36,10 +36,10 @@
 <!--        set pin = #{pin}-->
 <!--        where id =#{id}-->
 <!--    </update>-->
-<!--    <delete id="deleteProjectById">-->
-<!--        delete from `jira`.t_project-->
-<!--        where id = #{id}-->
-<!--    </delete>-->
+    <delete id="deleteByUid">
+        delete from `compress`.t_picture
+        where uid = #{uid}
+    </delete>
     <insert id="insertPicture" parameterType="com.mf.model.PictureDo">
         insert into `compress`.t_picture
             (
@@ -47,7 +47,8 @@
                 compress_setting_id,
                 filename,
                 type,
-                pic_data
+                pic_data,
+                uid
             )
         values
             (
@@ -55,7 +56,8 @@
                 #{compressSettingId},
                 #{filename},
                 #{type},
-                #{data}
+                #{data},
+                #{uid}
             )
     </insert>
 </mapper>

@@ -14,6 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class PictureDto implements Serializable {
     private Long id;
+    private String uid;
     private Long userId;
     private Long  compressSettingId;
     private String type;

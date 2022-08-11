@@ -15,6 +15,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class PictureDo extends BaseBean {
     private Long id;
+    private String uid;
     private Long userId;
     private Long  compressSettingId;
     private String type;
