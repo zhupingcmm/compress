@@ -15,9 +15,9 @@
        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
            update `compress`.t_picture
            <set>
-               data = ${item.data}
+               pic_data=#{item.data}
            </set>
-           where id = ${item.id}
+           where id=#{item.id}
        </foreach>
     </update>
     <!--    <select id="getAllProjects" resultMap="ProjectMap">-->
@@ -26,6 +26,11 @@
     <select id="getPictureById" resultMap="ProjectMap">
         select * from `compress`.t_picture
         where id = #{id}
+    </select>
+
+    <select id="getPictureByUid" resultMap="ProjectMap">
+        select * from `compress`.t_picture
+        where uid = #{uid}
     </select>
 <!--    <select id="getProjectById" resultMap="ProjectMap">-->
 <!--        select * from `jira`.t_project-->

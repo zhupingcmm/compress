@@ -11,6 +11,8 @@ public interface PictureMapper {
 
     PictureDo getPictureById(Long id);
 
+    PictureDo getPictureByUid(String id);
+
 
     void updatePictures (List<PictureDo> pictureDos);
 

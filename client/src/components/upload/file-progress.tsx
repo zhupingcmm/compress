@@ -4,11 +4,11 @@ import { List, Progress, Typography, Row, Col, Button } from "antd";
 import { UploadFile } from "antd/lib/upload/interface";
 // import { } from 'antd/lib/progress/progress';
 import {
-    CloseCircleOutlined,
-    DownloadOutlined,
-    Loading3QuartersOutlined,
-    DeleteOutlined,
-  } from "@ant-design/icons";
+  CloseCircleOutlined,
+  DownloadOutlined,
+  Loading3QuartersOutlined,
+  DeleteOutlined,
+} from "@ant-design/icons";
 import { useFileProgress } from "./hook.util";
 import { useDispatch, useSelector } from "react-redux";
 import { pictureState, removePicture } from "@src/slice/picture-slice";
@@ -17,19 +17,16 @@ interface FileProgressProps {
   file: UploadFile;
 }
 
-
-
 export const FileProgress = ({ file }: FileProgressProps) => {
-  const {uploadStatus, fileStatus} = useFileProgress(file);
-//   const useSelector(pictureState);
+  const { uploadStatus, fileStatus } = useFileProgress(file);
+  //   const useSelector(pictureState);
   const client = useHttp();
   const dispatch = useDispatch();
   const handleDelete = useCallback(async () => {
-    const {uid} = file;
-    await client(`picture/${uid}`, {method: "DELETE"});
-    dispatch(removePicture(uid))
-
-  },[file]);
+    const { uid } = file;
+    await client(`picture/${uid}`, { method: "DELETE" });
+    dispatch(removePicture(uid));
+  }, [file]);
 
   return (
     <>
@@ -49,7 +46,7 @@ export const FileProgress = ({ file }: FileProgressProps) => {
         </Typography.Text>
       </Col>
       <Col span={5} className="list__item-row-operation">
-            <DeleteOutlined onClick={handleDelete}/>
+        <DeleteOutlined onClick={handleDelete} />
       </Col>
     </>
   );

@@ -3,7 +3,11 @@ import { Typography, Upload as UploadAnt } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 import { useLocation, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { updateFiles, pictureState, updateCurrentFile } from "@src/slice/picture-slice";
+import {
+  updateFiles,
+  pictureState,
+  updateCurrentFile,
+} from "@src/slice/picture-slice";
 const { Dragger } = UploadAnt;
 const apiUrl = process.env.REACT_APP_API_URL;
 export const UploadFile = () => {

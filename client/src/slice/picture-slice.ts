@@ -5,7 +5,7 @@ import { UploadFile } from "antd/lib/upload/interface";
 
 interface State {
   pictures: UploadFile[];
-  currentPicture: Partial<UploadFile> | null
+  currentPicture: Partial<UploadFile> | null;
 }
 
 interface Action {
@@ -15,7 +15,7 @@ interface Action {
 
 export const initialState: State = {
   pictures: [],
-  currentPicture: null
+  currentPicture: null,
 };
 
 export const pictureSlice = createSlice({
@@ -28,15 +28,18 @@ export const pictureSlice = createSlice({
     updateFiles(state: State, action: PayloadAction<UploadFile[]>) {
       state.pictures = action.payload;
     },
-    updateCurrentFile(state: State, action: PayloadAction<Partial<UploadFile>>){
-      state.currentPicture = action.payload
+    updateCurrentFile(
+      state: State,
+      action: PayloadAction<Partial<UploadFile>>
+    ) {
+      state.currentPicture = action.payload;
     },
     removePicture(state: State, action: PayloadAction<String>) {
-      state.pictures = state.pictures.filter(p => p.uid != action.payload);
-    }
-
+      state.pictures = state.pictures.filter((p) => p.uid != action.payload);
+    },
   },
 });
 
-export const { addFile, updateFiles, updateCurrentFile, removePicture } = pictureSlice.actions;
+export const { addFile, updateFiles, updateCurrentFile, removePicture } =
+  pictureSlice.actions;
 export const pictureState = (state: RootState) => state.picture;

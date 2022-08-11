@@ -11,7 +11,7 @@ import java.util.List;
 @Builder
 public class CompressDto extends BaseBean {
 
-    private List<Long> pictureIds;
+    private List<String> uids;
 
     private CompressProfile compressProfile;
 }
