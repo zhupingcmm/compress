@@ -31,7 +31,7 @@ public class PictureServiceImpl implements PictureService {
             int result = pictureMapper.insertPicture(pictureDo);
             Asset.singleRowAffected(result);
         } catch (Exception e) {
-            log.error("Failed to inset picture: {} with error {}", pictureDto.getFilename(), String.valueOf(e));
+            log.error("Failed to inset picture: {} with error {}", pictureDto.getName(), String.valueOf(e));
             throw new CompressException(ResponseEnum.FAILED_UPLOAD);
         }
 
@@ -51,6 +51,7 @@ public class PictureServiceImpl implements PictureService {
                 .peek(p -> {
                     byte[] data = CompressUtil.compress(new ByteArrayInputStream(p.getData()), compressDto);
                     p.setData(data);
+                    p.setSize((long) data.length);
                 }).collect(Collectors.toList());
 
         pictureMapper.updatePictures(pictureDos);

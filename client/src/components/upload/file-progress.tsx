@@ -1,31 +1,37 @@
 import React, { useCallback, useMemo } from "react";
-import { List, Progress, Typography, Row, Col, Button } from "antd";
-// import {UploadFile} from '@src/type';
-import { UploadFile } from "antd/lib/upload/interface";
-// import { } from 'antd/lib/progress/progress';
-import {
-  CloseCircleOutlined,
-  DownloadOutlined,
-  Loading3QuartersOutlined,
-  DeleteOutlined,
-} from "@ant-design/icons";
+import { Progress, Typography, Col } from "antd";
+import { DeleteOutlined, DownloadOutlined } from "@ant-design/icons";
 import { useFileProgress } from "./hook.util";
-import { useDispatch, useSelector } from "react-redux";
-import { pictureState, removePicture } from "@src/slice/picture-slice";
+import { useDispatch } from "react-redux";
+import { removePicture } from "@src/slice/picture-slice";
 import { useHttp } from "@src/utils/http";
+import { CompressFile } from "@src/type/type";
+import { saveAs } from 'file-saver';
 interface FileProgressProps {
-  file: UploadFile;
+  file: CompressFile;
 }
-
+const apiUrl = process.env.REACT_APP_API_URL;
 export const FileProgress = ({ file }: FileProgressProps) => {
   const { uploadStatus, fileStatus } = useFileProgress(file);
-  //   const useSelector(pictureState);
+  //   const { compressedPictures } = useSelector(pictureState);
   const client = useHttp();
   const dispatch = useDispatch();
   const handleDelete = useCallback(async () => {
     const { uid } = file;
     await client(`picture/${uid}`, { method: "DELETE" });
     dispatch(removePicture(uid));
+  }, [file]);
+
+  const handleDownload = useCallback(() => {
+    const {data, name} = file;
+    // console.log('data:::',data);
+    var blob = new Blob([data || ''], {type: "data:image/png"});
+    // blob.size;
+    saveAs(`${apiUrl}/picture/1`, name);
+  }, [file]);
+
+  const enabled = useMemo(() => {
+    return file.data;
   }, [file]);
 
   return (
@@ -46,6 +52,7 @@ export const FileProgress = ({ file }: FileProgressProps) => {
         </Typography.Text>
       </Col>
       <Col span={5} className="list__item-row-operation">
+        {enabled && <DownloadOutlined className="download" onClick={handleDownload}/>}
         <DeleteOutlined onClick={handleDelete} />
       </Col>
     </>

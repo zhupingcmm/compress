@@ -1,32 +1,28 @@
-import { pictureState } from "@src/slice/picture-slice";
-import { List, Progress, Typography, Row, Col, Button } from "antd";
+import { pictureState, updateFiles } from "@src/slice/picture-slice";
+import { List, Typography, Row, Col, Button } from "antd";
 import React, { FC, useCallback } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CompressOutlined } from "@ant-design/icons";
-import {
-  CloseCircleOutlined,
-  DownloadOutlined,
-  Loading3QuartersOutlined,
-  DeleteOutlined,
-} from "@ant-design/icons";
-//   <DeleteOutlined />
 import { useHttp } from "@src/utils/http";
 import { FileProgress } from "./file-progress";
 export const FileList: FC = () => {
   const { pictures } = useSelector(pictureState);
+  const dispatch = useDispatch();
   const client = useHttp();
-  const handleCompress = useCallback(() => {
+  const handleCompress = useCallback(async () => {
     const uids = pictures.map((p) => p?.uid);
     const compressProfile = {
       height: 100,
       width: 100,
       angle: 45,
     };
-    client("picture/compress", {
+    const result = await client("picture/compress", {
       data: { uids, compressProfile },
       method: "POST",
     });
+    dispatch(updateFiles(result));
   }, [pictures]);
+  console.log("pictures::", pictures);
   return (
     <div className="file__list">
       <List
@@ -49,16 +45,16 @@ export const FileList: FC = () => {
         )}
         footer={
           <div className="file__list__footer">
-            <Typography.Text>{`${pictures.length} files in total, 0 were successfully compressed`}</Typography.Text>
+            <Typography.Text>{`${pictures.length} files in total, {} were successfully compressed`}</Typography.Text>
             <div>
-              <Button
+              {/* <Button
                 type="primary"
                 shape="round"
                 icon={<CompressOutlined />}
                 onClick={handleCompress}
               >
                 Setting
-              </Button>
+              </Button> */}
               <Button
                 type="primary"
                 shape="round"

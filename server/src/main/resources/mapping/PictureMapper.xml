@@ -7,6 +7,7 @@
         <result column="compress_setting_id" jdbcType="BIGINT" property="id"/>
         <result column="filename" jdbcType="VARCHAR" property="filename"/>
         <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="size" jdbcType="BIGINT" property="size"/>
         <result column="pic_data" jdbcType="BLOB" property="data"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
@@ -15,7 +16,8 @@
        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
            update `compress`.t_picture
            <set>
-               pic_data=#{item.data}
+               pic_data=#{item.data},
+               size=#{item.size}
            </set>
            where id=#{item.id}
        </foreach>
@@ -50,19 +52,21 @@
             (
                 user_id,
                 compress_setting_id,
-                filename,
+                name,
                 type,
                 pic_data,
-                uid
+                uid,
+                size
             )
         values
             (
                 #{userId},
                 #{compressSettingId},
-                #{filename},
+                #{name},
                 #{type},
                 #{data},
-                #{uid}
+                #{uid},
+                #{size}
             )
     </insert>
 </mapper>

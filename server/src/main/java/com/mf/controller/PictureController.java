@@ -28,14 +28,16 @@ public class PictureController {
     public BaseResponse uploadResource(@PathVariable(name = "userid") long userId, @PathVariable(name = "uid") String uid, @RequestParam MultipartFile file) {
         try {
             byte [] data = file.getBytes();
-            String filename = file.getOriginalFilename();
-            String type = filename.substring(filename.lastIndexOf("."));
+            long size = file.getSize();
+            String name = file.getOriginalFilename();
+            String type = name.substring(name.lastIndexOf("."));
 
             PictureDto pictureDto = PictureDto.builder()
                     .userId(userId)
                     .uid(uid)
+                    .size(size)
                     .compressSettingId(1l)
-                    .filename(filename)
+                    .name(name)
                     .type(type)
                     .data(data)
                     .build();
@@ -55,7 +57,7 @@ public class PictureController {
     public BaseResponse<PictureDto> downloads(HttpServletResponse response, @PathVariable long id) {
         try (ServletOutputStream writer = response.getOutputStream()){
             PictureDto pictureDto = pictureService.download(id);
-            response.setHeader("content-disposition", "attachment; fileName=" + pictureDto.getFilename());
+            response.setHeader("content-disposition", "attachment; fileName=" + pictureDto.getName());
             writer.write(pictureDto.getData());
             return BaseResponse.success(pictureDto);
         } catch (IOException e) {

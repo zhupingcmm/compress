@@ -19,7 +19,8 @@ public class PictureDo extends BaseBean {
     private Long userId;
     private Long  compressSettingId;
     private String type;
-    private String filename;
+    private String name;
+    private Long size;
     private byte[] data;
     private Date createTime;
     private Date updateTime;

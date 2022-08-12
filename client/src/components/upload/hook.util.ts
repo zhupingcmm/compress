@@ -52,7 +52,7 @@ export const useFileProgress = (file: UploadFile) => {
     }
     return pStatus;
   }, [file]);
-  console.log("status::", uploadStatus);
+
   const fileStatus = useMemo(() => {
     let fStatus: FileStatus = "Not Start";
     if (uploadStatus === "active") {

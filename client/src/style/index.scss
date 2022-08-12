@@ -1,6 +1,7 @@
 @import "~antd/dist/antd.css";
 $font-size: 2rem;
 $header-line-height: 6.4rem;
+$marginRight: 0.8rem;
 html {
   /** rem em */
   // em 相对于父元素的font-size
@@ -13,6 +14,9 @@ html body #root {
   height: 100vh;
 }
 
+@mixin margin-right($marginRight) {
+  margin-right: $marginRight;
+}
 .header {
   height: 6.4rem;
   line-height: $header-line-height;
@@ -74,6 +78,9 @@ html body #root {
         }
         & .list__item-row-operation {
           text-align: right;
+          & .download {
+            @include margin-right($marginRight);
+          }
         }
 
         & .list__item-progress {

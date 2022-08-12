@@ -19,15 +19,9 @@ export const UploadFile = () => {
     return type.toUpperCase();
   }, [type]);
   const beforeUpload = async (file: File) => {
-    console.log(file);
     dispatch(updateCurrentFile(file));
     // return false;
   };
-
-  // const handleChange = useCallback((info) => {
-
-  // }, []);
-
   console.log("pictures:", state);
   return (
     <div className="upload__file">
@@ -45,8 +39,7 @@ export const UploadFile = () => {
         action={`${apiUrl}/picture/1/${state.currentPicture?.uid}`}
         showUploadList={false}
         onChange={(info) => {
-          console.log("info", info);
-          const { file, fileList } = info;
+          const { fileList } = info;
           dispatch(updateFiles(fileList));
         }}
       >
