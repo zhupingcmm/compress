@@ -37,13 +37,7 @@ export const pictureSlice = createSlice({
     },
     removePicture(state: State, action: PayloadAction<String>) {
       state.pictures = state.pictures.filter((p) => p.uid != action.payload);
-    },
-    // updateCompressedPictures(
-    //   state: State,
-    //   action: PayloadAction<CompressFile[]>
-    // ) {
-    //   state.compressedPictures = action.payload;
-    // },
+    }
   },
 });
 
@@ -52,6 +46,5 @@ export const {
   updateFiles,
   updateCurrentFile,
   removePicture,
-  // updateCompressedPictures,
 } = pictureSlice.actions;
 export const pictureState = (state: RootState) => state.picture;

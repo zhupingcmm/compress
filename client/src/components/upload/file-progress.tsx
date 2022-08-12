@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { removePicture } from "@src/slice/picture-slice";
 import { useHttp } from "@src/utils/http";
 import { CompressFile } from "@src/type/type";
-import { saveAs } from 'file-saver';
+import { saveAs } from "file-saver";
 interface FileProgressProps {
   file: CompressFile;
 }
@@ -23,9 +23,9 @@ export const FileProgress = ({ file }: FileProgressProps) => {
   }, [file]);
 
   const handleDownload = useCallback(() => {
-    const {data, name} = file;
+    const { data, name } = file;
     // console.log('data:::',data);
-    var blob = new Blob([data || ''], {type: "data:image/png"});
+    var blob = new Blob([data || ""], { type: "data:image/png" });
     // blob.size;
     saveAs(`${apiUrl}/picture/1`, name);
   }, [file]);
@@ -52,7 +52,9 @@ export const FileProgress = ({ file }: FileProgressProps) => {
         </Typography.Text>
       </Col>
       <Col span={5} className="list__item-row-operation">
-        {enabled && <DownloadOutlined className="download" onClick={handleDownload}/>}
+        {enabled && (
+          <DownloadOutlined className="download" onClick={handleDownload} />
+        )}
         <DeleteOutlined onClick={handleDelete} />
       </Col>
     </>
