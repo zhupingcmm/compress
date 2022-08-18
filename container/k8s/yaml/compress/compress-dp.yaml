@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cms-portal-deploy
+  name: compress-deploy
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: cms-portal
+      app: compress
   template:
     metadata:
       labels:
-        app: cms-portal
+        app: compress
     spec:
       containers:
-        - name: cms-portal
-          image: pingzhu/cms-portal:1.0.6
+        - name: compress
+          image: pingzhu/compress:1.0.0
           ports:
             - containerPort: 8091
