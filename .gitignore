@@ -6,6 +6,9 @@ target/
 
 **/node_modules
 **/*.log
+**/**/dist
+**/**/public
+**/**/*.log
 ### STS ###
 .apt_generated
 .classpath
