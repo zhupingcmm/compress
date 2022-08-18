@@ -24,9 +24,7 @@ export const FileProgress = ({ file }: FileProgressProps) => {
 
   const handleDownload = useCallback(() => {
     const { data, name } = file;
-    // console.log('data:::',data);
     var blob = new Blob([data || ""], { type: "data:image/png" });
-    // blob.size;
     saveAs(`${apiUrl}/picture/1`, name);
   }, [file]);
 

@@ -22,7 +22,6 @@ export const FileList: FC = () => {
     });
     dispatch(updateFiles(result));
   }, [pictures]);
-  console.log("pictures::", pictures);
   return (
     <div className="file__list">
       <List

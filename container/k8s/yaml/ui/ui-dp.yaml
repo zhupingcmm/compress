@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus-test
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "3000"
+      labels:
+        app: prometheus-test
+    spec:
+      containers:
+        - name: prometheus-test
+          image: pingzhu/prometheus-test:1.0.1
+          ports:
+            - containerPort: 3000

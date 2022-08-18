@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cms-portal-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cms-portal
+  template:
+    metadata:
+      labels:
+        app: cms-portal
+    spec:
+      containers:
+        - name: cms-portal
+          image: pingzhu/cms-portal:1.0.6
+          ports:
+            - containerPort: 8091
