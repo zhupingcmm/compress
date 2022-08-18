@@ -8,6 +8,7 @@ target/
 **/*.log
 **/**/dist
 **/**/public
+client/server/upload
 **/**/*.log
 ### STS ###
 .apt_generated

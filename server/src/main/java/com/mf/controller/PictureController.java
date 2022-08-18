@@ -26,6 +26,7 @@ public class PictureController {
 
     @PostMapping("/{userid}/{uid}")
     public BaseResponse uploadResource(@PathVariable(name = "userid") long userId, @PathVariable(name = "uid") String uid, @RequestParam MultipartFile file) {
+        log.info("request user id is {}", userId);
         try {
             byte [] data = file.getBytes();
             long size = file.getSize();

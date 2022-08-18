@@ -36,7 +36,7 @@ export const UploadFile = () => {
         multiple
         beforeUpload={beforeUpload}
         // disabled={true}
-        action={`${apiUrl}/picture/1/${state.currentPicture?.uid}`}
+        action={`${apiUrl}/upload/picture/1/${state.currentPicture?.uid}`}
         showUploadList={false}
         onChange={(info) => {
           const { fileList } = info;

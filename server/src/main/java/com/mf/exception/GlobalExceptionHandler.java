@@ -17,20 +17,20 @@ public class GlobalExceptionHandler {
     @ResponseBody
     @ExceptionHandler(value = Exception.class)
     public BaseResponse exceptionHandler(Exception exception, HttpServletResponse response) {
+        response.setStatus(500);
+        log.error(exception.getMessage());
         if (exception instanceof CompressException) {
             CompressException e = (CompressException) exception;
 
             ResponseEnum responseEnum = e.getResponseEnum();
 
             if (responseEnum == null) {
-                response.setStatus(500);
                 return new BaseResponse(e.getCode(), e.getMessage());
             } else {
                 response.setStatus(responseEnum.getHttpCode());
                 return new BaseResponse<>(responseEnum);
             }
         } else {
-            response.setStatus(500);
             return BaseResponse.error(ResponseEnum.ERROR);
         }
     }

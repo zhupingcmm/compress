@@ -30,6 +30,7 @@ public class PictureServiceImpl implements PictureService {
             PictureDo pictureDo = ObjectTransformer.transform(pictureDto, PictureDo.class);
             int result = pictureMapper.insertPicture(pictureDo);
             Asset.singleRowAffected(result);
+            log.info("Success upload [{}] to server", pictureDo.getName());
         } catch (Exception e) {
             log.error("Failed to inset picture: {} with error {}", pictureDto.getName(), String.valueOf(e));
             throw new CompressException(ResponseEnum.FAILED_UPLOAD);
