@@ -1,3 +1,3 @@
 !#/bin/bash
-# cd server
+ cd server
 npm run start

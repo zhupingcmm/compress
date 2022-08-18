@@ -1,22 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prometheus-test
+  name: compress-ui-deploy
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: prometheus-test
+      app: compress-ui
   template:
     metadata:
-      annotations:
-        prometheus.io/scrape: "true"
-        prometheus.io/port: "3000"
       labels:
-        app: prometheus-test
+        app: compress-ui
     spec:
       containers:
-        - name: prometheus-test
-          image: pingzhu/prometheus-test:1.0.1
+        - name: compress-ui
+          image: pingzhu/compress-ui:1.0.0
           ports:
-            - containerPort: 3000
+            - containerPort: 3002
