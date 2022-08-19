@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: compress
-          image: pingzhu/compress:1.0.0
+          image: pingzhu/compress:1.0.7
           ports:
             - containerPort: 8091
           livenessProbe:
