@@ -62,6 +62,7 @@ export const start = () => {
             body: formData
           };
           const url = `${BASE_URL}${req?.url}`;
+          log.info("request url %s", url);
           const response = await fetch(url, {...customerConfig});
           req.send(await response.json());
         } catch(e) {

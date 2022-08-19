@@ -17,3 +17,15 @@ spec:
           image: pingzhu/compress:1.0.0
           ports:
             - containerPort: 8091
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8091
+              initialDelaySeconds: 3
+              periodSeconds: 3
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8091
+              initialDelaySeconds: 3
+              periodSeconds: 3
