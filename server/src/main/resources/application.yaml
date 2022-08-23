@@ -18,12 +18,20 @@ logging:
   file:
     name: compress.log
 management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
   health:
     livenessState:
       enabled: true
     readinessState:
       enabled: true
   endpoint:
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
     health:
       show-details: always
       probes:
@@ -35,4 +43,3 @@ management:
       base-path: /actuator
       exposure:
         include: '*'
-        exclude: beans
