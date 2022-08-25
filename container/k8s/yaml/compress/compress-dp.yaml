@@ -9,6 +9,9 @@ spec:
       app: compress
   template:
     metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/ports: "8091"
       labels:
         app: compress
     spec:
