@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: compress-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: compress
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSure: 3
+      maxUnavailable: 5
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/ports: "8091"
+      labels:
+        app: compress
+    spec:
+      containers:
+        - name: compress
+          image: pingzhu/compress:1.0.7
+          ports:
+            - containerPort: 8091
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8091
+            initialDelaySeconds: 3
+            periodSeconds: 3
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8091
+            initialDelaySeconds: 3
+            periodSeconds: 3
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: compress-svc
+spec:
+  selector:
+    app: compress
+  ports:
+    - protocol: TCP
+      port: 8091
+      targetPort: 8091
+  type: NodePort
