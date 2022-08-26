@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: influxdb-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: influxdb
+  template:
+    metadata:
+      labels:
+        app: influxdb
+    spec:
+      volumes:
+        - name: task-pv-storage
+          persistentVolumeClaim:
+            claimName: task-pv-claim
+      containers:
+        - name: influxdb
+          image: influxdb:1.8
+          ports:
+            - containerPort: 8086
+              protocol: TCP
+            - containerPort: 8083
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /var/lib/influxdb
+              name: task-pv-storage
+              subPath: influxdb
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: influxdb-svc
+spec:
+  selector:
+    app: influxdb
+  ports:
+    - protocol: TCP
+      port: 8086
+      targetPort: 8086
+    - protocol: TCP
+        port: 8083
+        targetPort: 8083
+  type: NodePort
