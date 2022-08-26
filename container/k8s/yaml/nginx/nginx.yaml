@@ -24,10 +24,10 @@ spec:
           volumeMounts:
             - mountPath: /usr/share/nginx/html
               name: task-pv-storage
-              subPath: html
-            - mountPath: /usr/local/nginx/conf/conf.d
+              subPath: nginx/html
+            - mountPath: /etc/nginx/conf.d
               name: task-pv-storage
-              subPath: conf.d
+              subPath: nginx/conf.d
 
 ---
 apiVersion: v1
