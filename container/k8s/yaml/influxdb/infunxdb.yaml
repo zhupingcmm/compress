@@ -37,10 +37,12 @@ spec:
   selector:
     app: influxdb
   ports:
-    - protocol: TCP
+    - name: p1
+      protocol: TCP
       port: 8086
       targetPort: 8086
-    - protocol: TCP
+    - name: p2
+      protocol: TCP
       port: 8083
       targetPort: 8083
   type: NodePort
