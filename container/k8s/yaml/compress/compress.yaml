@@ -11,7 +11,8 @@ spec:
     type: RollingUpdate
     rollingUpdate:
       maxSurge: 3
-      maxUnavailable: 5
+      maxUnavailable: 2
+  minReadySeconds: 10
   template:
     metadata:
       annotations:
