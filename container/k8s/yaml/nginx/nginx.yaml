@@ -26,8 +26,8 @@ spec:
               name: task-pv-storage
               subPath: html
             - mountPath: /usr/local/nginx/conf/conf.d
-                name: task-pv-storage
-                subPath: conf.d
+              name: task-pv-storage
+              subPath: conf.d
 
 ---
 apiVersion: v1
@@ -39,6 +39,6 @@ spec:
     app: nginx
   ports:
     - protocol: TCP
-      port: 3002
-      targetPort: 3002
+      port: 80
+      targetPort: 80
   type: NodePort
