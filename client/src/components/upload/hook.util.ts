@@ -18,7 +18,7 @@ export const useCompressPicture = () => {
     (data?: Partial<Compress>) => client("", { method: "POST", data }),
     {
       onSuccess(data: any, variables: any, context?: any) {
-        console.log(data);
+        // console.log(data);
       },
     }
   );
@@ -36,7 +36,7 @@ type FileStatus =
 
 export const useFileProgress = (file: UploadFile) => {
   const uploadStatus = useMemo(() => {
-    console.log(file.status);
+    // console.log(file.status);
     let pStatus: UploadStatus = "normal";
     switch (file.status) {
       case "error":

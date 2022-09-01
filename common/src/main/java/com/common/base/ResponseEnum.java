@@ -16,7 +16,11 @@ public enum ResponseEnum {
     SYSTEM_BUSY(500,1005, "系统繁忙"),
     FAILED_UPLOAD(500,1006, "上传失败"),
     FAILED_DOWNLOAD(500,1007, "下载失败"),
-    NOT_TOTAL_ROWS_AFFECTED(500,1008,"数据查询或者更新不全");
+    NOT_TOTAL_ROWS_AFFECTED(500,1008,"数据查询或者更新不全"),
+
+    DUPLICATE_FILE(500, 1009, "文件已经存在");
+
+
 
     @Getter
     private int code;

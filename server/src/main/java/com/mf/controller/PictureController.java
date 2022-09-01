@@ -24,18 +24,20 @@ public class PictureController {
 
     private final PictureService pictureService;
 
-    @PostMapping("/{userid}/{uid}")
-    public BaseResponse uploadResource(@PathVariable(name = "userid") long userId, @PathVariable(name = "uid") String uid, @RequestParam MultipartFile file) {
-        log.info("request user id is {}", userId);
+    @PostMapping("/{userid}")
+    public BaseResponse uploadResource(@PathVariable(name = "userid") long userId,  @RequestParam MultipartFile file) {
         try {
             byte [] data = file.getBytes();
             long size = file.getSize();
             String name = file.getOriginalFilename();
-            String type = name.substring(name.lastIndexOf("."));
+            String type = file.getContentType();
+
+            if (pictureService.findByName(name) != null) {
+                throw new CompressException(ResponseEnum.DUPLICATE_FILE);
+            }
 
             PictureDto pictureDto = PictureDto.builder()
                     .userId(userId)
-                    .uid(uid)
                     .size(size)
                     .compressSettingId(1l)
                     .name(name)
@@ -66,12 +68,10 @@ public class PictureController {
         }
     }
 
-    @DeleteMapping("/{uid}")
-    public BaseResponse remove(@PathVariable String uid){
-
-        pictureService.deleteByUid(uid);
+    @DeleteMapping("/{name}")
+    public BaseResponse remove(@PathVariable String name){
+        pictureService.deleteByName(name);
         return BaseResponse.success();
-
     }
 
 

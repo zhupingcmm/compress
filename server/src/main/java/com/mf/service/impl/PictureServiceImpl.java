@@ -30,7 +30,7 @@ public class PictureServiceImpl implements PictureService {
             PictureDo pictureDo = ObjectTransformer.transform(pictureDto, PictureDo.class);
             int result = pictureMapper.insertPicture(pictureDo);
             Asset.singleRowAffected(result);
-            log.info("Success upload [{}] to server", pictureDo.getName());
+            log.info("user {} success upload [{}] to server", pictureDo.getUserId(), pictureDo.getName());
         } catch (Exception e) {
             log.error("Failed to inset picture: {} with error {}", pictureDto.getName(), String.valueOf(e));
             throw new CompressException(ResponseEnum.FAILED_UPLOAD);
@@ -65,5 +65,17 @@ public class PictureServiceImpl implements PictureService {
         Asset.singleRowAffected(result);
     }
 
+    @Override
+    public void deleteByName(String name) {
+        int result = pictureMapper.deleteByName(name);
+        log.info("Delete {} from db successfully.", name);
+        Asset.singleRowAffected(result);
+    }
+
+    @Override
+    public PictureDto findByName(String name) {
+        PictureDo pictureDo = pictureMapper.findByName(name);
+        return pictureDo != null ? ObjectTransformer.transform(pictureMapper.findByName(name), PictureDto.class) : null;
+    }
 
 }

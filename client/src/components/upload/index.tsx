@@ -1,12 +1,13 @@
-import React, { FC } from "react";
+import React, {useState } from "react";
 import { FileList } from "./file-list";
-import { UploadFile } from "./upload-file";
-
+import { UploadFiles } from "./upload-files";
+import type { UploadFile } from 'antd/es/upload/interface';
 export const Upload = () => {
+  const [fileList, setFileList] = useState<UploadFile[]>([]);
   return (
     <div className="upload">
-      <UploadFile />
-      <FileList />
+      <UploadFiles fileList={fileList} setFileList={setFileList}/>
+      <FileList fileList={fileList}/>
     </div>
   );
 };

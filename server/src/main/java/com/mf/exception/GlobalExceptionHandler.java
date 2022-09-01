@@ -18,7 +18,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = Exception.class)
     public BaseResponse exceptionHandler(Exception exception, HttpServletResponse response) {
         response.setStatus(500);
-        log.error(exception.getMessage());
+        log.error(exception.getMessage(), exception.getCause());
         if (exception instanceof CompressException) {
             CompressException e = (CompressException) exception;
 

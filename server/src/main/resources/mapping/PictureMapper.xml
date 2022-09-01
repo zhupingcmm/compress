@@ -5,7 +5,7 @@
         <result column="id" jdbcType="BIGINT" property="id"/>
         <result column="user_id" jdbcType="BIGINT" property="userId"/>
         <result column="compress_setting_id" jdbcType="BIGINT" property="id"/>
-        <result column="filename" jdbcType="VARCHAR" property="filename"/>
+        <result column="filename" jdbcType="VARCHAR" property="name"/>
         <result column="type" jdbcType="VARCHAR" property="type"/>
         <result column="size" jdbcType="BIGINT" property="size"/>
         <result column="pic_data" jdbcType="BLOB" property="data"/>
@@ -47,6 +47,14 @@
         delete from `compress`.t_picture
         where uid = #{uid}
     </delete>
+    <delete id="deleteByName">
+        delete from `compress`.t_picture
+        where name = #{name}
+    </delete>
+    <select id="findByName" resultMap="ProjectMap">
+        select * from `compress`.t_picture
+        where name = #{name}
+    </select>
     <insert id="insertPicture" parameterType="com.mf.model.PictureDo">
         insert into `compress`.t_picture
             (
@@ -55,7 +63,6 @@
                 name,
                 type,
                 pic_data,
-                uid,
                 size
             )
         values
@@ -65,7 +72,6 @@
                 #{name},
                 #{type},
                 #{data},
-                #{uid},
                 #{size}
             )
     </insert>

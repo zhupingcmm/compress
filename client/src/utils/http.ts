@@ -1,9 +1,7 @@
 import { useCallback } from "react";
-// import { useAuth } from "@src/context/auth-context";
 import * as qs from "qs";
 import { cleanObject } from "@src/utils/index";
-import { Store } from "react-notifications-component";
-// import { error, success } from "./notification";
+import { Store } from 'react-notifications-component';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 interface Config extends RequestInit {
@@ -39,10 +37,36 @@ export const http = async (
       if (res.ok) {
         return Promise.resolve(result?.data);
       } else {
+        // Store.addNotification({
+        //   title: "Wonderful!",
+        //   message: result?.message,
+        //   type: "danger",
+        //   insert: "top",
+        //   container: "top-right",
+        //   animationIn: ["animate__animated", "animate__fadeIn"],
+        //   animationOut: ["animate__animated", "animate__fadeOut"],
+        //   dismiss: {
+        //     duration: 5000,
+        //     onScreen: true
+        //   }
+        // });
         return Promise.reject(result);
       }
     })
     .catch((e) => {
+      Store.addNotification({
+        title: "Wonderful!",
+        message: e.message,
+        type: "danger",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 5000,
+          onScreen: true
+        }
+      });
       return Promise.reject(e);
     });
 };

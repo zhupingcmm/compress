@@ -113,7 +113,7 @@ export const useConfig = (queryKey: QueryKey) => {
     onSuccess: () => queryClient.invalidateQueries(queryKey),
     onMutate: (variables: any) => {
       const previousItems = queryClient.getQueryData(queryKey);
-      console.log("onMutate variables", variables, previousItems);
+      // console.log("onMutate variables", variables, previousItems);
       return { previousItems };
     },
     onError: (error: any, newItem: any, context: any) => {

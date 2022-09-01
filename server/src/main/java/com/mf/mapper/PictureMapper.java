@@ -18,5 +18,8 @@ public interface PictureMapper {
 
     int deleteByUid(String uid);
 
-//    List<PictureDo> getPictureByIds(List<Long> ids);
+    int deleteByName(String name);
+
+    PictureDo findByName(String name);
+
 }

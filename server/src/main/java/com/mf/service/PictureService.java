@@ -14,4 +14,8 @@ public interface PictureService {
     List<PictureDto> compress(CompressDto compressDto);
 
     void deleteByUid(String uid);
+
+    void deleteByName(String name);
+
+    PictureDto findByName(String name);
 }
