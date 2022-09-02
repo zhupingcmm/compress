@@ -18,7 +18,9 @@ public enum ResponseEnum {
     FAILED_DOWNLOAD(500,1007, "下载失败"),
     NOT_TOTAL_ROWS_AFFECTED(500,1008,"数据查询或者更新不全"),
 
-    DUPLICATE_FILE(500, 1009, "文件已经存在");
+    DUPLICATE_FILE(500, 1009, "文件已经存在"),
+    TOKEN_EXPIRED(500, 1010, "token 过期"),
+    INVALID_TOKEN(500, 1011, "无效 token");
 
 
 

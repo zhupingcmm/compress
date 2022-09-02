@@ -19,6 +19,8 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <thumbnailator.version>0.4.17</thumbnailator.version>
+        <jjwt.version>0.11.1</jjwt.version>
+        <junit.version>4.13.2</junit.version>
     </properties>
 
     <parent>
@@ -34,6 +36,29 @@
                 <groupId>net.coobird</groupId>
                 <artifactId>thumbnailator</artifactId>
                 <version>${thumbnailator.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <scope>runtime</scope>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId>
+                <scope>runtime</scope>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
 

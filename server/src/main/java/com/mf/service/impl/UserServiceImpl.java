@@ -27,6 +27,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto findUserByName(String name) {
         UserDto userDto = ObjectTransformer.transform(userMapper.getByName(name), UserDto.class);
+        userDto.setPassword(null);
         log.info("Success get {} user info", userDto.getName());
         return userDto;
     }
