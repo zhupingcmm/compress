@@ -16,13 +16,15 @@ export const FileList = ({fileList}: FileListProps) => {
   const client = useHttp();
   const handleCompress = useCallback(async () => {
     const uids = fileList.map((p) => p?.uid);
+    console.log('fileList:::', fileList);
+    const names = fileList.map(p =>p.name);
     const compressProfile = {
       height: 100,
       width: 100,
       angle: 45,
     };
     const result = await client("picture/compress", {
-      data: { uids, compressProfile },
+      data: { names, compressProfile },
       method: "POST",
     });
     dispatch(updatePictures(result));

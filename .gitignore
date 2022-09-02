@@ -10,6 +10,8 @@ target/
 **/**/public
 client/server/upload
 **/**/*.log
+*.gz
+
 ### STS ###
 .apt_generated
 .classpath

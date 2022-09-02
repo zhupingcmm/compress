@@ -46,7 +46,7 @@ public class PictureServiceImpl implements PictureService {
 
     @Override
     public List<PictureDto> compress(CompressDto compressDto) {
-        List<String> ids= compressDto.getUids();
+        List<String> ids= compressDto.getNames();
         List<PictureDo> pictureDos = ids.stream()
                 .map(pictureMapper::getPictureByUid)
                 .peek(p -> {
