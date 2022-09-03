@@ -20,7 +20,9 @@ public enum ResponseEnum {
 
     DUPLICATE_FILE(500, 1009, "文件已经存在"),
     TOKEN_EXPIRED(500, 1010, "token 过期"),
-    INVALID_TOKEN(500, 1011, "无效 token");
+    INVALID_TOKEN(500, 1011, "无效 token"),
+
+    AUTHENTICATION_FAILED(403, 1012, "认证失败");
 
 
 

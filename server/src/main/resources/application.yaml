@@ -43,3 +43,9 @@ management:
       base-path: /actuator
       exposure:
         include: '*'
+app:
+  jwt:
+    jwt-id: "compress"
+    authorities: "authorities"
+    token-expire-time: 1000000
+
