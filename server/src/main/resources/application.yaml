@@ -1,14 +1,8 @@
 spring:
   application:
     name: compress
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/compress?useInformationSchema=false&charset=utf8mb4&useSSL=false&allowMultiQueries=true&allowPublicKeyRetrieval=true
-    username: root
-    password: 1234
-  redis:
-    port: 6379
-    host: localhost
+  profiles:
+    active: dev
 
 mybatis:
   mapper-locations: classpath:mapping/*Mapper.xml
