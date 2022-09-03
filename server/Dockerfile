@@ -1,5 +1,6 @@
 FROM openjdk:8-jdk-alpine
 WORKDIR /opt
-COPY ./target/*.jar /opt/app.jar
+COPY target/*.jar /opt
+COPY start.sh /opt
 EXPOSE 8091
-CMD ["java","-jar","app.jar"]
+CMD ["sh", "-c", "start.sh"]
