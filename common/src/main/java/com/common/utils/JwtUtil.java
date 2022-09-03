@@ -32,7 +32,7 @@ public class JwtUtil {
         try {
             return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new CompressException(ResponseEnum.TOKEN_EXPIRED);
         }
     }
 
