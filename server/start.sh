@@ -15,7 +15,7 @@ export CUSTOM_SEARCH_LOCATIONS=${DEFAULT_SEARCH_LOCATIONS},file:${BASE_DIR}/conf
 #===========================================================================================
 # JVM Configuration
 #===========================================================================================
-JAVA_OPT="${JAVA_OPT} -server -Xms512m -Xmx512m -Xmn256 -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=320m"
+JAVA_OPT="${JAVA_OPT} -server -Xms512m -Xmx512m -Xmn256m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=320m"
 JAVA_OPT="${JAVA_OPT} -XX:-OmitStackTraceInFastThrow -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=${BASE_DIR}/logs/java_heapdump.hprof"
 JAVA_OPT="${JAVA_OPT} -XX:-UseLargePages"
 JAVA_OPT="${JAVA_OPT} -jar ${BASE_DIR}/${SERVER}-*.jar"
@@ -35,6 +35,6 @@ fi
 # 启动服务
 #===========================================================================================
 # 启动服务
-echo "$JAVA ${JAVA_OPT}"
+#echo "$JAVA ${JAVA_OPT}"
 $JAVA ${JAVA_OPT}
-echo "server is starting"
+#echo "server is starting"

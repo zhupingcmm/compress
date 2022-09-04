@@ -13,7 +13,7 @@ logging:
   level:
     root: info
   file:
-    name: compress.log
+    name: logs/server.log
 management:
   metrics:
     export:
