@@ -7,3 +7,6 @@ spring:
   redis:
     port: 6379
     host: redis-svc
+server:
+  servlet:
+    context-path: /compress
