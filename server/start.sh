@@ -35,6 +35,6 @@ fi
 # 启动服务
 #===========================================================================================
 # 启动服务
-echo "$JAVA ${JAVA_OPT}" > ${BASE_DIR}/logs/${SERVER}.log 2>&1 &
-nohup $JAVA ${JAVA_OPT} hero_web.hero_web >> ${BASE_DIR}/logs/${SERVER}.log 2>&1 &
-echo "server is starting，you can check the ${BASE_DIR}/logs/${SERVER}.log"
+echo "$JAVA ${JAVA_OPT}"
+$JAVA ${JAVA_OPT}
+echo "server is starting"
