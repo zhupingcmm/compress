@@ -1,7 +1,7 @@
 package com.mf.aspect;
 
+import com.mf.config.Tracking;
 import com.mf.dto.WeblogDto;
-import com.mf.model.WeblogDo;
 import com.mf.service.WeblogService;
 import eu.bitwalker.useragentutils.UserAgent;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 public class WeblogAspect {
 
     @Autowired
-    private WeblogService weblogService;
+    private Tracking<WeblogDto> tracking;
     private ThreadLocal<Long> startTime = new ThreadLocal<>();
     private ThreadLocal<String> methodName = new ThreadLocal<>();
     private ThreadLocal<String> classInfo = new ThreadLocal<>();
@@ -53,7 +53,8 @@ public class WeblogAspect {
                 .method(request.getMethod())
                 .methodName(methodName.get())
                 .build();
-        weblogService.insertOneLog(weblogDto);
+        tracking.put(weblogDto);
+        log.info("tracking queue {}", tracking.getQueue());
         log.info("[{}] request take {} s", weblogDto.getUrl(), weblogDto.getTakeTime()/1000);
     }
 

@@ -10,12 +10,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class WeblogServiceImpl implements WeblogService {
+public class WeblogServiceImpl implements WeblogService<WeblogDto> {
 
     private final WeblogMapper weblogMapper;
+
+
     @Override
     public void insertOneLog(WeblogDto weblogDto) {
-       WeblogDo weblogDo = ObjectTransformer.transform(weblogDto, WeblogDo.class);
-       weblogMapper.insertWeblog(weblogDo);
+        WeblogDo weblogDo = ObjectTransformer.transform(weblogDto, WeblogDo.class);
+        weblogMapper.insertWeblog(weblogDo);
     }
 }
