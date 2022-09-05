@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mf.mapper.WeblogMapper">
+    <resultMap id="Weblog" type="com.mf.model.WeblogDo">
+        <result column="id" jdbcType="BIGINT" property="id"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="ip" jdbcType="VARCHAR" property="ip"/>
+        <result column="class_info" jdbcType="VARCHAR" property="classInfo"/>
+        <result column="method" jdbcType="VARCHAR" property="method"/>
+        <result column="method_name" jdbcType="VARCHAR" property="methodName"/>
+        <result column="browser" jdbcType="VARCHAR" property="ip"/>
+        <result column="browser_version" jdbcType="VARCHAR" property="browserVersion"/>
+        <result column="os" jdbcType="VARCHAR" property="os"/>
+        <result column="take_time" jdbcType="INTEGER" property="takeTime"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+    <insert id="insertWeblog" parameterType="com.mf.model.WeblogDo">
+        insert into `compress`.t_weblog
+        (
+         url,
+         ip,
+         class_info,
+         method,
+         method_name,
+         browser,
+         browser_version,
+         os,
+         take_time
+        )
+       values (
+               #{url},
+               #{ip},
+               #{classInfo},
+               #{method},
+               #{methodName},
+               #{browser},
+               #{browserVersion},
+               #{os},
+               #{takeTime}
+              )
+    </insert>
+</mapper>

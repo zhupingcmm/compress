@@ -28,16 +28,24 @@ spec:
             - containerPort: 8091
           livenessProbe:
             httpGet:
-              path: /actuator/health/liveness
+              path: /compress/actuator/health/liveness
               port: 8091
-            initialDelaySeconds: 3
+            initialDelaySeconds: 10
             periodSeconds: 3
           readinessProbe:
             httpGet:
-              path: /actuator/health/readiness
+              path: /compress/actuator/health/readiness
               port: 8091
-            initialDelaySeconds: 3
+            initialDelaySeconds: 8
             periodSeconds: 3
+          startupProbe:
+            httpGet:
+              path: /compress/actuator/health/ping
+              port: 8091
+            initialDelaySeconds: 5
+            periodSeconds: 2
+
+
 ---
 apiVersion: v1
 kind: Service

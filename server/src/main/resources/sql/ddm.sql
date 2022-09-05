@@ -29,3 +29,17 @@ create table `t_picture` (
     primary key pk_id (`id`)
 ) engine=innodb default charset=utf8mb4 collate=utf8mb4_unicode_ci comment='picture table';
 
+create table `t_weblog` (
+                             `id` bigint unsigned auto_increment comment 'primary key',
+                             `url` varchar(32) comment 'url',
+                             `ip` varchar(32) comment 'ip',
+                             `class_info` varchar(32) comment 'class info',
+                             `method` varchar(32) comment 'method',
+                             `method_name` varchar(32) comment 'methodName',
+                             `browser` varchar(32) comment 'browser',
+                             `browser_version` varchar(32) comment 'browserVersion',
+                             `os` varchar(32)  comment 'os',
+                             `take_time` INTEGER comment 'take time',
+                             `create_time` datetime default current_timestamp comment 'create time',
+                             primary key pk_id (`id`)
+) engine=innodb default charset=utf8mb4 collate=utf8mb4_unicode_ci comment='weblog table';

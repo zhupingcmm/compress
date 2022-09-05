@@ -22,6 +22,6 @@ public class UserDto extends BaseBean {
     private String token;
     private int role;
     private int status;
-    private Date createTime;
-    private Date updateTime;
+    private long createTime;
+    private long updateTime;
 }
