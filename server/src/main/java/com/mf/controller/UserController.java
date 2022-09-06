@@ -5,6 +5,7 @@ import com.common.base.Constants;
 import com.common.base.ResponseEnum;
 import com.common.exception.CompressException;
 import com.common.utils.JwtUtil;
+import com.mf.annotation.MyRateLimiter;
 import com.mf.config.AppConfig;
 import com.mf.dto.UserDto;
 import com.mf.service.UserService;
@@ -37,6 +38,7 @@ public class UserController {
         String username = (String) claims.get(Constants.USERNAME);
         String password = (String) claims.get(Constants.PASSWORD);
         UserDto userDto = userService.findUserByName(username);
+//        redisTemplate.opsForValue().get()
         if (Objects.equals(password, userDto.getPassword())) {
             return BaseResponse.success(userDto);
         }
@@ -52,6 +54,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
+    @MyRateLimiter(permitPerSecond = 0.1, timeout = 1L)
     public BaseResponse<UserDto> login(@RequestBody UserDto userDto) {
         UserDto user = userService.findUserByName(userDto.getName());
         if (Objects.equals(user.getPassword(), userDto.getPassword())) {

@@ -23,6 +23,8 @@
         <junit.version>4.13.2</junit.version>
         <userAgent>1.21</userAgent>
         <alibaba.cloud.version>2.2.5.RELEASE</alibaba.cloud.version>
+        <commons.lang3.version>3.11</commons.lang3.version>
+        <jackson.version>2.10.2</jackson.version>
     </properties>
 
     <parent>
@@ -34,6 +36,21 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons.lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
             <dependency>
                 <groupId>net.coobird</groupId>
                 <artifactId>thumbnailator</artifactId>
