@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nacos-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nacos
+  template:
+    metadata:
+      labels:
+        app: nacos
+    spec:
+      volumes:
+        - name: task-pv-storage
+          persistentVolumeClaim:
+            claimName: task-pv-claim
+      containers:
+        - name: nacos
+          image: nacos/nacos-server:latest
+          ports:
+            - containerPort: 8848
+          volumeMounts:
+            - mountPath: /home/nacos/conf
+              name: task-pv-storage
+              subPath: nacos/conf
+            - mountPath: /home/nacos/logs
+              name: task-pv-storage
+              subPath: nacos/logs
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nacos-svc
+spec:
+  selector:
+    app: nacos
+  ports:
+    - protocol: TCP
+      port: 8848
+      targetPort: 8848
+  type: NodePort

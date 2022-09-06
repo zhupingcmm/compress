@@ -2,7 +2,7 @@ spring:
   application:
     name: compress
   profiles:
-    active: prod
+    active: dev
 
 mybatis:
   mapper-locations: classpath:mapping/*Mapper.xml

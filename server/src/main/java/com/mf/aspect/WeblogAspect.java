@@ -1,8 +1,6 @@
 package com.mf.aspect;
-
-import com.mf.config.Tracking;
 import com.mf.dto.WeblogDto;
-import com.mf.service.WeblogService;
+import com.mf.queue.Tracking;
 import eu.bitwalker.useragentutils.UserAgent;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -54,7 +52,6 @@ public class WeblogAspect {
                 .methodName(methodName.get())
                 .build();
         tracking.put(weblogDto);
-//        log.info("tracking queue {}", tracking.getQueue());
         log.info("[{}] request take {} s", weblogDto.getUrl(), weblogDto.getTakeTime()/1000);
     }
 

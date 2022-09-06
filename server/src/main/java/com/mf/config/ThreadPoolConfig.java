@@ -1,13 +1,14 @@
 package com.mf.config;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-@Component
+@Configuration
 public class ThreadPoolConfig {
     @Bean
     public ThreadPoolExecutor threadPoolExecutor () {
@@ -16,5 +17,10 @@ public class ThreadPoolConfig {
                 10, TimeUnit.SECONDS,
                 new LinkedBlockingQueue<>()
         );
+    }
+
+    @Bean
+    public ScheduledThreadPoolExecutor scheduledThreadPoolExecutor () {
+        return new ScheduledThreadPoolExecutor(5);
     }
 }

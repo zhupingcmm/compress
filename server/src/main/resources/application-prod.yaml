@@ -7,6 +7,10 @@ spring:
   redis:
     port: 6379
     host: redis-svc
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacos-svc:8848
 server:
   servlet:
     context-path: /compress
