@@ -4,7 +4,9 @@ import com.mf.dto.UserDto;
 import org.springframework.stereotype.Service;
 
 public interface UserService {
-    void addUser(UserDto userDto);
+    UserDto addUser(UserDto userDto);
 
     UserDto findUserByName(String name);
+
+    void deleteUser(String name);
 }

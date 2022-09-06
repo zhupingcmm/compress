@@ -29,4 +29,8 @@
         select * from `compress`.t_user
         where name = #{name}
     </select>
+    <delete id="deleteByName" parameterType="string">
+        delete from `compress`.t_user
+        where name = #{name}
+    </delete>
 </mapper>

@@ -9,4 +9,6 @@ public interface UserMapper {
     int addUser(UserDo user);
 
     UserDo getByName(String name);
+
+    int deleteByName(String name);
 }

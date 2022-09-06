@@ -11,6 +11,7 @@ import com.mf.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,27 +36,18 @@ public class UserController {
         val claims = JwtUtil.parseToken(token);
         String username = (String) claims.get(Constants.USERNAME);
         String password = (String) claims.get(Constants.PASSWORD);
-        val userInfoFromCache= redisTemplate.opsForValue().get(username);
-
-        if (userInfoFromCache != null) {
-            if (!Objects.equals(password, userInfoFromCache.getPassword())) throw new CompressException(ResponseEnum.INVALID_TOKEN);
-            userInfoFromCache.setPassword(null);
-        } else {
-            UserDto userDto = userService.findUserByName(username);
-            userDto.setToken(token);
+        UserDto userDto = userService.findUserByName(username);
+        if (Objects.equals(password, userDto.getPassword())) {
             return BaseResponse.success(userDto);
         }
-
-        return BaseResponse.success(userInfoFromCache);
+        throw new CompressException(ResponseEnum.INVALID_TOKEN);
     }
 
     @PostMapping("/register")
     public BaseResponse<UserDto> register(@RequestBody UserDto userDto) {
-        userService.addUser(userDto);
         val token = JwtUtil.createToken(appConfig.getJwt().getJwtId(), userDto.getName(), userDto.getPassword(), appConfig.getJwt().getTokenExpireTime());
         userDto.setToken(token);
-        userDto.setPassword(null);
-        redisTemplate.opsForValue().set(userDto.getName(), userDto, appConfig.getJwt().getTokenExpireTime(), TimeUnit.MILLISECONDS);
+        userService.addUser(userDto);
         return BaseResponse.success(userDto);
     }
 
@@ -64,13 +56,21 @@ public class UserController {
         UserDto user = userService.findUserByName(userDto.getName());
         if (Objects.equals(user.getPassword(), userDto.getPassword())) {
             val token = JwtUtil.createToken(appConfig.getJwt().getJwtId(), userDto.getName(), userDto.getPassword(), appConfig.getJwt().getTokenExpireTime());
-
             user.setToken(token);
-            redisTemplate.opsForValue().set(user.getName(), user, appConfig.getJwt().getTokenExpireTime(), TimeUnit.MILLISECONDS);
-            user.setPassword(null);
             return BaseResponse.success(user);
         }
         throw new CompressException(ResponseEnum.AUTHENTICATION_FAILED);
+    }
+
+    @DeleteMapping("/user/delete/{name}")
+    public BaseResponse deleteUser(@PathVariable String name) {
+        userService.deleteUser(name);
+        return BaseResponse.success();
+    }
+
+    @GetMapping("/user/{name}")
+    public BaseResponse<UserDto> getUserByName(@PathVariable String name) {
+        return BaseResponse.success(userService.findUserByName(name));
     }
 
 

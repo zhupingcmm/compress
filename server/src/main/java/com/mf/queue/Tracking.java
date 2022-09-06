@@ -20,8 +20,9 @@ public class Tracking <T>{
 
     private final WeblogService<T> weblogService;
     private final LinkedList<T> queue = new LinkedList<>();
-    @Qualifier("threadPoolExecutor")
+
     @Autowired
+    @Qualifier("threadPoolExecutor")
     private ThreadPoolExecutor poolExecutor;
 
     @Autowired
