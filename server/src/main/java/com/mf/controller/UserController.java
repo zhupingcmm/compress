@@ -38,7 +38,6 @@ public class UserController {
         String username = (String) claims.get(Constants.USERNAME);
         String password = (String) claims.get(Constants.PASSWORD);
         UserDto userDto = userService.findUserByName(username);
-//        redisTemplate.opsForValue().get()
         if (Objects.equals(password, userDto.getPassword())) {
             return BaseResponse.success(userDto);
         }
