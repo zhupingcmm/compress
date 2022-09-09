@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Cacheable(cacheNames = Constants.USER_CACHE_KEY, key = "#name")
+    @MyCacheable(cacheNames = Constants.USER_CACHE_KEY, key = "#name")
     public UserDto findUserByName(String name) {
         UserDto userDto = ObjectTransformer.transform(userMapper.getByName(name), UserDto.class);
         log.info("Success get {} user info", userDto.getName());

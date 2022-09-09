@@ -1,5 +1,6 @@
 package com.mf.utils;
 
+import com.sun.javafx.binding.StringFormatter;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.DefaultParameterNameDiscoverer;
@@ -25,7 +26,7 @@ public class CacheUtil {
         for (int i = 0; i < Objects.requireNonNull(parameterNames).length; i++) {
             context.setVariable(parameterNames[i], args[i]);
         }
-        return cacheName + expression.getValue(context).toString();
+        return String.format(cacheName, expression.getValue(context));
 
     }
 }
