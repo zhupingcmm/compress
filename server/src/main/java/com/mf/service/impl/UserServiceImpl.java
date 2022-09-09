@@ -16,6 +16,8 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -45,6 +47,11 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(String name) {
         int result = userMapper.deleteByName(name);
         Asset.singleRowAffected(result);
+    }
+
+    @Override
+    public List<String> getUserNames() {
+        return userMapper.getUserNames();
     }
 
 

@@ -33,4 +33,7 @@
         delete from `compress`.t_user
         where name = #{name}
     </delete>
+    <select id="getUserNames" resultType="string">
+        select name from `compress`.t_user;
+    </select>
 </mapper>

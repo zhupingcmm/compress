@@ -5,4 +5,6 @@ public class Constants {
     public static final String PASSWORD  = "password";
 
     public static final String USER_CACHE_KEY = "compress::user::%s";
+
+    public static final String BLOOM_FILTER = "BLOOM_FILTER";
 }

@@ -52,7 +52,7 @@ public class WeblogAspect {
                 .methodName(methodName.get())
                 .build();
         tracking.put(weblogDto);
-        log.info("[{}] request take {} s", weblogDto.getUrl(), weblogDto.getTakeTime()/1000);
+        log.info("[{}] request take {} ms", weblogDto.getUrl(), weblogDto.getTakeTime());
     }
 
     @AfterThrowing(value = "weblogPointcut()", throwing = "throwable")
