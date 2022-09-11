@@ -3,6 +3,7 @@ package com.mf.service.impl;
 import com.common.base.ResponseEnum;
 import com.common.exception.CompressException;
 import com.mf.dto.CouponRecordDto;
+import com.mf.lock.RedisLock;
 import com.mf.mapper.CouponMapper;
 import com.mf.mapper.CouponRecordMapper;
 import com.mf.model.CouponDo;
@@ -25,11 +26,12 @@ public class CouponRecordServiceImpl implements CouponRecordService {
 
     private final CouponRecordMapper couponRecordMapper;
     private final CouponMapper couponMapper;
+    private final RedisLock redisLock;
 
     ReentrantLock reentrantLock = new ReentrantLock();
 
     @Override
-    @Transactional
+//    @Transactional
     public boolean  receiveCoupon(CouponRecordDto couponRecordDto) {
         try {
             reentrantLock.lock();
