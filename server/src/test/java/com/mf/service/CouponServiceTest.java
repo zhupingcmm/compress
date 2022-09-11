@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.concurrent.CountDownLatch;
+
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class CouponServiceTest {
@@ -17,10 +19,23 @@ public class CouponServiceTest {
 
     @Test
     public void testReceiveCoupon() {
-        CouponRecordDto couponRecordDto = CouponRecordDto.builder()
-                .couponId(1l)
-                .userId(1l)
-                .build();
-        couponRecordService.receiveCoupon(couponRecordDto);
+        int size = 100;
+        CountDownLatch countDownLatch = new CountDownLatch(size);
+        for (int i = 0; i < size; i++) {
+            CouponRecordDto couponRecordDto = CouponRecordDto.builder()
+                    .couponId(1L)
+                    .userId((long) i)
+                    .build();
+            new Thread(() -> {
+                countDownLatch.countDown();
+                try {
+                    countDownLatch.await();
+                    couponRecordService.receiveCoupon(couponRecordDto);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }).start();
+        }
+
     }
 }
