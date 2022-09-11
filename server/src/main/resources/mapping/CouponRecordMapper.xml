@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mf.mapper.CouponRecordMapper">
+    <resultMap id="CouponRecordMap" type="com.mf.model.CouponRecordDo">
+        <result property="id" jdbcType="BIGINT" column="id"/>
+        <result property="userId" jdbcType="BIGINT" column="user_id"/>
+        <result property="couponId" jdbcType="BIGINT" column="coupon_id"/>
+        <result column="status" jdbcType="TINYINT" property="status"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <insert id="insertCouponRecord" parameterType="com.mf.model.CouponRecordDo">
+        insert into `compress`.t_coupon_record
+        (
+         user_id,
+         coupon_id,
+         status
+        )
+        values
+         (
+            #{userId},
+            #{couponId},
+            #{status}
+         )
+    </insert>
+</mapper>

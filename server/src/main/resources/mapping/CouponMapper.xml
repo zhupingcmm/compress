@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mf.mapper.CouponMapper">
+    <resultMap id="CouponMap" type="com.mf.model.CouponDo">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="with_amount" jdbcType="BIGINT" property="withAmount"/>
+        <result column="used_amount" jdbcType="BIGINT" property="usedAmount"/>
+        <result property="quota" jdbcType="BIGINT" column="quota"/>
+        <result column="take_count" property="takeCount" jdbcType="BIGINT"/>
+        <result column="used_count" property="usedCount" jdbcType="BIGINT"/>
+        <result column="status" jdbcType="TINYINT" property="status"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <select id="selectCouponById" resultMap="CouponMap">
+        select * from `compress`.t_coupon
+        where id = #{id}
+    </select>
+    <update id="updateCouponTakeCount" parameterType="com.mf.model.CouponDo">
+        update `compress`.t_coupon set take_count = #{takeCount} where id = #{id}
+    </update>
+</mapper>

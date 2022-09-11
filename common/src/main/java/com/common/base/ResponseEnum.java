@@ -22,7 +22,8 @@ public enum ResponseEnum {
     TOKEN_EXPIRED(500, 1010, "token 过期"),
     INVALID_TOKEN(500, 1011, "无效 token"),
 
-    AUTHENTICATION_FAILED(403, 1012, "认证失败");
+    AUTHENTICATION_FAILED(403, 1012, "认证失败"),
+    COUPON_NOT_ENOUGH(500, 1013, "优惠券已被领取完");
 
 
 
