@@ -18,7 +18,7 @@ public class ZKIdGenerator {
 
     private final ZkClient zkClient;
 
-    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("");
+    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyMMddHHmmssSSS");
 
     @PostConstruct
     private void init(){

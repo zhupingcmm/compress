@@ -8,8 +8,8 @@ import java.nio.charset.StandardCharsets;
 @Component
 public class ZkSerializer implements org.I0Itec.zkclient.serialize.ZkSerializer {
     @Override
-    public byte[] serialize(Object data) throws ZkMarshallingError {
-        return String.valueOf(data).getBytes(StandardCharsets.UTF_8);
+    public byte[] serialize(Object o) throws ZkMarshallingError {
+        return String.valueOf(o).getBytes(StandardCharsets.UTF_8);
     }
 
     @Override
