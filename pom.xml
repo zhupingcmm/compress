@@ -25,6 +25,7 @@
         <alibaba.cloud.version>2.2.5.RELEASE</alibaba.cloud.version>
         <commons.lang3.version>3.11</commons.lang3.version>
         <jackson.version>2.10.2</jackson.version>
+        <zkclient.version>0.11</zkclient.version>
     </properties>
 
     <parent>
@@ -94,6 +95,11 @@
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
                 <version>${alibaba.cloud.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.101tec</groupId>
+                <artifactId>zkclient</artifactId>
+                <version>${zkclient.version}</version>
             </dependency>
         </dependencies>
 

@@ -18,7 +18,7 @@ public class RedisIdGenerator {
     private final RedisTemplate<String, Integer> redisTemplate;
 
 
-    public long getNext(IdTypeEnum idTypeEnum) {
+    public long getNextId(IdTypeEnum idTypeEnum) {
         LocalDateTime now = LocalDateTime.now();
         String dateTime = dateTimeFormatter.format(now);
         Long value = redisTemplate.opsForValue().increment(idTypeEnum.getServiceName(), 1);

@@ -20,7 +20,7 @@ public class RedisIdGeneratorTest {
 
     @Test
     public void getNextTest() {
-       long id =  redisIdGenerator.getNext(IdTypeEnum.COMPRESS);
+       long id =  redisIdGenerator.getNextId(IdTypeEnum.COMPRESS);
         System.out.println(id);
     }
 
@@ -32,7 +32,7 @@ public class RedisIdGeneratorTest {
             new Thread(() -> {
                 try {
                     countDownLatch.await();
-                    long id = redisIdGenerator.getNext(IdTypeEnum.COMPRESS);
+                    long id = redisIdGenerator.getNextId(IdTypeEnum.COMPRESS);
                     log.info("id is {}", id);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
